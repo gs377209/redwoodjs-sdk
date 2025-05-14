@@ -1,5 +1,14 @@
 "use client";
 
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/app/components/ui/sheet";
+import { ContactForm } from "@/app/components/ContactForm";
 import { Button } from "./ui/button";
 import { DatePicker } from "./ui/datepicker";
 import {
@@ -11,10 +20,21 @@ import {
 } from "./ui/select";
 import { createApplication } from "@/app/pages/applications/actions";
 
-import { ApplicationStatus } from "@prisma/client";
+import { ApplicationStatus, Contact } from "@prisma/client";
+import { Icon } from "./Icon";
+import { useState } from "react";
+import { ContactCard } from "./ContactCard";
 
-const ApplicationsForm = ({ statuses }: { statuses: ApplicationStatus[] }) => {
+const ApplicationsForm = ({
+  statuses,
+  contacts,
+}: {
+  statuses: ApplicationStatus[];
+  contacts: Contact[];
+}) => {
+  const [isContactSheetOpen, setIsContactSheetOpen] = useState(false);
   const handleSubmit = async (formData: FormData) => {
+    formData.append("contacts", JSON.stringify(contacts));
     const result = await createApplication(formData);
     if (result.success) {
       window.location.href = `/applications`;
@@ -98,7 +118,31 @@ const ApplicationsForm = ({ statuses }: { statuses: ApplicationStatus[] }) => {
             <p className="input-description">
               Invite your team members to collaborate.
             </p>
-            <div>Contact Card</div>
+            <ul>
+              {contacts.map((contact) => (
+                <li key={contact.id}>
+                  <ContactCard contact={contact} />
+                </li>
+              ))}
+            </ul>
+            <Sheet
+              open={isContactSheetOpen}
+              onOpenChange={setIsContactSheetOpen}
+            >
+              <SheetTrigger className="flex items-center gap-2 font-poppins text-sm font-bold bg-secondary py-3 px-6 rounded-md cursor-pointer">
+                <Icon id="plus" size={16} />
+                Add a Contact
+              </SheetTrigger>
+              <SheetContent className="pt-[100px] px-12">
+                <SheetHeader>
+                  <SheetTitle>Add a Contact</SheetTitle>
+                  <SheetDescription>
+                    Add a Contact to this application.
+                  </SheetDescription>
+                  <ContactForm callback={() => setIsContactSheetOpen(false)} />
+                </SheetHeader>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </div>

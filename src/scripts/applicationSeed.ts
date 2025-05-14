@@ -15,7 +15,7 @@ export default defineScript(async ({ env }) => {
         dateApplied: new Date(),
         user: {
           connect: {
-            id: "4e77f1b8-84df-4de8-8ccb-dee48dc87f3f",
+            id: "5225345d-da96-4e3c-ab3e-825481ceea09",
           },
         },
         applicationStatus: {
@@ -32,6 +32,7 @@ export default defineScript(async ({ env }) => {
                 lastName: "Doe",
                 email: "john.doe@example.com",
                 role: "Hiring Manager",
+                userId: "5225345d-da96-4e3c-ab3e-825481ceea09",
               },
             },
           },
