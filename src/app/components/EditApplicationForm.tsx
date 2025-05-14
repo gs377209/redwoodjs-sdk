@@ -36,9 +36,11 @@ const EditApplicationForm = ({
   application,
 }: {
   statuses: ApplicationStatus[];
-  application: Application & { applicationStatus: ApplicationStatus } & {
-    company: Company & { contacts: Contact[] };
-  };
+  application:
+    | (Application & { applicationStatus: ApplicationStatus } & {
+        company: Company & { contacts: Contact[] };
+      })
+    | null;
 }) => {
   const [isContactSheetOpen, setIsContactSheetOpen] = useState(false);
   const handleSubmit = async (formData: FormData) => {
@@ -112,7 +114,7 @@ const EditApplicationForm = ({
               </div>
             </div>
             <div className="field">
-              <label htmlFor="url">Application URL</label>
+              <label htmlFor="postingUrl">Application URL</label>
               <p className="input-description">What does the pay look like?</p>
               <input
                 type="text"

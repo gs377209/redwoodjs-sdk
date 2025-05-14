@@ -18,9 +18,9 @@ export function DatePicker({
   defaultValue,
 }: {
   name: string;
-  defaultValue: string;
+  defaultValue?: string;
 }) {
-  const [date, setDate] = React.useState<Date>(
+  const [date, setDate] = React.useState<Date | undefined>(
     defaultValue ? new Date(defaultValue) : new Date()
   );
 
