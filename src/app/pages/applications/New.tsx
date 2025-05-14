@@ -21,7 +21,7 @@ const New = async ({ ctx }: { ctx: AppContext }) => {
   });
   return (
     <InteriorLayout>
-      <div className="mb-12 -mt-7 pl-[120px]">
+      <div className="breadcrumbs">
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>

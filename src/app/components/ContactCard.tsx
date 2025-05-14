@@ -5,7 +5,13 @@ import { Icon } from "./Icon";
 import { toast } from "sonner";
 import { deleteContact } from "../pages/applications/actions";
 
-const ContactCard = ({ contact }: { contact: Contact }) => {
+const ContactCard = ({
+  contact,
+  isEditable = true,
+}: {
+  contact: Contact;
+  isEditable?: boolean;
+}) => {
   const handleDelete = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     const result = await deleteContact(contact.id);
@@ -17,15 +23,17 @@ const ContactCard = ({ contact }: { contact: Contact }) => {
   };
   return (
     <div className="relative group/card flex items-center gap-4 mb-6">
-      <div className="hidden group-hover/card:block pr-10 absolute top-1 -left-[37px]">
-        <button
-          onClick={(e) => handleDelete(e)}
-          role="button"
-          className="hover:bg-black cursor-pointer text-white fill-current rounded-full bg-destructive p-1"
-        >
-          <Icon id="close" size={16} />
-        </button>
-      </div>
+      {isEditable && (
+        <div className="hidden group-hover/card:block pr-10 absolute top-1 -left-[37px]">
+          <button
+            role="button"
+            className="hover:bg-black cursor-pointer text-white fill-current rounded-full bg-destructive p-1"
+            onClick={(e) => handleDelete(e)}
+          >
+            <Icon id="close" size={16} />
+          </button>
+        </div>
+      )}
       <div>
         <Avatar className="size-10">
           <AvatarFallback>{contact.firstName.charAt(0)}</AvatarFallback>
