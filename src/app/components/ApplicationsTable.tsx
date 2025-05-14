@@ -44,7 +44,7 @@ const ApplicationsTable = ({
       </TableHeader>
       <TableBody>
         {applications.map((application) => (
-          <TableRow>
+          <TableRow key={application.id}>
             <TableCell>
               <Badge
                 variant={
@@ -81,7 +81,10 @@ const ApplicationsTable = ({
               ${application.salaryMin}-${application.salaryMax}
             </TableCell>
             <TableCell>
-              <a href={link("/applications/:id", { id: application.id })}>
+              <a
+                href={link("/applications/:id", { id: application.id })}
+                title="View Application"
+              >
                 <Icon id="view" />
               </a>
             </TableCell>

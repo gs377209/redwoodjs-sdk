@@ -57,6 +57,8 @@ model Contact {
   role      String?
   companyId String?
   company   Company?  @relation(fields: [companyId], references: [id])
+  userId    String
+  user      User      @relation(fields: [userId], references: [id])
   createdAt DateTime  @default(now())
   updatedAt DateTime? @updatedAt
 }
@@ -81,4 +83,5 @@ model User {
   updatedAt    DateTime?     @updatedAt
   applications Application[]
   credentials  Credential[]
+  contacts     Contact[]
 }
