@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@prisma/adapter-d1": "^6.7.0",
-    "@prisma/client": "^6.7.0",
+    "@prisma/client": "^6.8.2",
     "@radix-ui/react-avatar": "^1.1.9",
     "@radix-ui/react-dialog": "^1.1.13",
     "@radix-ui/react-popover": "^1.1.13",
