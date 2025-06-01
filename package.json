@@ -46,7 +46,7 @@
     "next-themes": "^0.4.6",
     "react-day-picker": "^9.7.0",
     "rwsdk": "^0.0.83",
-    "sonner": "^2.0.3",
+    "sonner": "^2.0.4",
     "tailwind-merge": "^3.3.0",
     "tailwindcss": "^4.1.6"
   },
